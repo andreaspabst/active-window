@@ -74,7 +74,7 @@ function reponseTreatment(response){
 */
 function getConfig(){
   //Retrieve configs
-  var configs = JSON.parse(fs.readFileSync(__dirname+'/configs.json', 'utf8'));
+  var configs = JSON.parse(fs.readFileSync(process.cwd()+'/configs.json', 'utf8'));
   var path = require("path");
 
   switch(process.platform){
@@ -92,12 +92,12 @@ function getConfig(){
           throw "Operating System not supported yet. "+process.platform;
   }
   //Append directory to script url
-  script_url = path.join(__dirname,config.script_url);
+  script_url = path.join(process.cwd(),config.script_url);
   config.parameters.push(script_url);
 
   //Append directory to subscript url on OSX
   if(process.platform=="darwin"){
-    config.parameters.push(path.join(__dirname,config.subscript_url));
+    config.parameters.push(path.join(process.cwd(),config.subscript_url));
   }
 
   return config;
