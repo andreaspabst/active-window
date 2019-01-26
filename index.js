@@ -74,7 +74,7 @@ function reponseTreatment(response){
 */
 function getConfig(){
   //Retrieve configs
-  var configs = JSON.parse(fs.readFileSync(process.cwd()+'/configs.json', 'utf8'));
+  var configs = JSON.parse(fs.readFileSync(process.cwd()+'/configs/active-window.json', 'utf8'));
   var path = require("path");
 
   switch(process.platform){
