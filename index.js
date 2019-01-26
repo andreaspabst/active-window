@@ -1,3 +1,4 @@
+
 var fs = require('fs');
 var config = getConfig();
 
@@ -56,14 +57,17 @@ function reponseTreatment(response){
     response = response.replace(/(WM_CLASS|WM_NAME)(\(\w+\)\s=\s)/g,'').split("\n",2);
     window.app = response[0];
     window.title = response[1];
+    window.pid = (typeof response[2] !== "undefined") ? response[2] : 0;
   }else if (process.platform == 'win32'){
     response = response.replace(/(@{ProcessName=| AppTitle=)/g,'').slice(0,-1).split(';',2);
     window.app = response[0];
     window.title = response[1];
+    window.pid = (typeof response[2] !== "undefined") ? response[2] : 0;
   }else if(process.platform == 'darwin'){
     response = response.split(",");
     window.app = response[0];
     window.title = response[1].replace(/\n$/, "").replace(/^\s/, "");
+    window.pid = (typeof response[2] !== "undefined") ? response[2] : 0;
   }
   return window;
 }
